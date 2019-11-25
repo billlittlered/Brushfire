@@ -26,3 +26,8 @@
 .purchaseCompleteMessage {
     color: green !important;
 }
+
+.updateButton {
+    margin-top: 10px !important;
+    margin-left: 5px !important;
+}

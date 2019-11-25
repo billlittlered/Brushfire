@@ -1,3 +1,28 @@
 .smallCartImage {
-    height: 12vh;
+    height: 8vh;
+    width: 8vh;
+    
+}
+
+.cartTopText {
+    vertical-align: top;
+}
+
+.cartItemNameSpan {
+    font-weight: bold;
+}
+
+.divRight {
+    position: absolute;
+    right: 0px;
+    width: 300px;
+}
+
+.purchaseButton {
+    background-color: green !important;
+    color:white !important;
+}
+
+.purchaseCompleteMessage {
+    color: green !important;
 }

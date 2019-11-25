@@ -156,7 +156,7 @@ class Products extends Component {
                                 alt={this.state.selectedProduct.Name}
                             />
                             <br />
-                            <h3>{this.state.selectedProduct.Name}</h3>
+                            <h3>{this.state.selectedProduct.Name} - ${this.state.selectedProduct.Price}</h3>
                             <br />
                             <p>{this.state.selectedProduct.Description}</p>
                         <br />

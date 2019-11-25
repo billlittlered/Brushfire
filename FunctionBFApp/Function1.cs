@@ -47,6 +47,7 @@ namespace FunctionBFApp
                               var smallImageUrl = reader.GetString(3);
                               var largeImageUrl = reader.GetString(4);
                               var imageName = reader.GetString(5);
+                              var price = reader.GetDecimal(6);
 
                               c++;
 
@@ -59,7 +60,8 @@ namespace FunctionBFApp
                                              Description = description,
                                              SmallImageUrl = smallImageUrl,
                                              LargeImageUrl = smallImageUrl,
-                                             ImageName = imageName
+                                             ImageName = imageName,
+                                             Price = price
                                         }
                                    );
 
@@ -103,6 +105,7 @@ namespace FunctionBFApp
                               var smallImageUrl = reader.GetString(3);
                               var largeImageUrl = reader.GetString(4);
                               var imageName = reader.GetString(5);
+                              var price = reader.GetDecimal(6);
 
                               retResult = new Product
                               {
@@ -111,7 +114,8 @@ namespace FunctionBFApp
                                    Description = description,
                                    SmallImageUrl = smallImageUrl,
                                    LargeImageUrl = largeImageUrl,
-                                   ImageName = imageName
+                                   ImageName = imageName,
+                                   Price = price
                               };
                          }
                     }
@@ -167,7 +171,7 @@ namespace FunctionBFApp
 
                     StringBuilder sbSql = new StringBuilder();
                     sbSql.AppendLine(" select c.ProductId, c.QuantityDesired, p.Name, p.Description, ");
-                    sbSql.AppendLine(" p.SmallImageUrl, p.LargeImageUrl, p.ImageName ");
+                    sbSql.AppendLine(" p.SmallImageUrl, p.LargeImageUrl, p.ImageName, p.Price ");
                     sbSql.AppendLine(" from Cart c inner join Product p on c.ProductId = p.Id");
 
                     using (SqlCommand cmd = new SqlCommand(sbSql.ToString(), conn))
@@ -184,6 +188,7 @@ namespace FunctionBFApp
                               var smallImageUrl = reader.GetString(4);
                               var largeImageUrl = reader.GetString(5);
                               var imageName = reader.GetString(6);
+                              var price = reader.GetDecimal(7);
 
 
                               c++;
@@ -195,7 +200,8 @@ namespace FunctionBFApp
                                    Name = name,
                                    SmallImageUrl = smallImageUrl,
                                    LargeImageUrl = largeImageUrl,
-                                   ImageName = imageName
+                                   ImageName = imageName,
+                                   Price = price
                               };
 
                               cartItems.Add
@@ -310,6 +316,36 @@ namespace FunctionBFApp
                }
           }
 
+          [FunctionName("CompletePurchase")]
+          public static async Task<IActionResult> CompletePurchase(
+              [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = null)] HttpRequest req,
+              ILogger log)
+          {
+               log.LogInformation("C# HTTP trigger function processed a request.");
+               var connString = Environment.GetEnvironmentVariable("sqldb_connection");
+
+               using (SqlConnection conn = new SqlConnection(connString))
+               {
+                    conn.Open();
+
+                    var sql = $"delete from Cart";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                         try
+                         {
+                              // Execute the command and log the # rows affected.
+                              var rowsAffected = cmd.ExecuteNonQuery();
+                              return new OkObjectResult("Purchase completed and cart emptied!");
+                         }
+                         catch (Exception ex)
+                         {
+                              return new BadRequestObjectResult("Error completed purchase!");
+                         }
+                    }
+               }
+          }
+
           [FunctionName("UpdateProductInCart")]
           public static async Task<IActionResult> UpdateProductInCart(
               [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = null)] HttpRequest req,
@@ -360,6 +396,7 @@ namespace FunctionBFApp
           public string SmallImageUrl { get; set; }
           public string LargeImageUrl { get; set; }
           public string ImageName { get; set; }
+          public decimal Price { get; set; }
      }
 
      public class CartItem

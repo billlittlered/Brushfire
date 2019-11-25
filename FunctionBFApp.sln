@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionBFApp", "FunctionBFApp\FunctionBFApp.csproj", "{79DEEDF3-E6E5-44B8-94E2-2507B16D166D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79DEEDF3-E6E5-44B8-94E2-2507B16D166D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DEEDF3-E6E5-44B8-94E2-2507B16D166D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DEEDF3-E6E5-44B8-94E2-2507B16D166D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DEEDF3-E6E5-44B8-94E2-2507B16D166D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1707038-BF88-430D-927B-3A63AE32EB1D}
+	EndGlobalSection
+EndGlobal

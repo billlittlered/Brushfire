@@ -10,10 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-import ComplexGrid from './ComplexGrid';
-
-
-
 class Cart extends Component {
     
 
@@ -148,6 +144,10 @@ class Cart extends Component {
         });;
     }
 
+    handleCurrencyDisplay(amount) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+    }
+
     render() {
         return (
             <div>
@@ -172,7 +172,7 @@ class Cart extends Component {
                                                 alt={p.ProductDetails.Name}
                                             />
                                             <h3>{p.ProductDetails.Name}</h3>
-                                            <h3>Qty: {p.QuantityDesired} x Price: {p.ProductDetails.Price} = ${p.QuantityDesired * p.ProductDetails.Price}</h3>
+                                            <h3>Qty: {p.QuantityDesired} x Price: {this.handleCurrencyDisplay(p.ProductDetails.Price)} = {this.handleCurrencyDisplay(p.QuantityDesired * p.ProductDetails.Price)}</h3>
                                             <Button variant="contained" color="secondary" value={p.ProductId} onClick={this.handleRemoveFromCart} className="">
                                                 Remove 
                                             </Button>
@@ -183,9 +183,9 @@ class Cart extends Component {
                             </div>
                             { this.state.productsInCart && this.state.productsInCart.length > 0?
                                 <div>
-                                    <h4>Sub Total: ${this.state.subTotal}</h4>
-                                    <h4>Tax (6%): ${this.state.calculatedTax.toFixed(2)}</h4>
-                                    <h3>Grand Total: ${this.state.grandTotal.toFixed(2)}</h3>
+                                    <h4>Sub Total: {this.handleCurrencyDisplay(this.state.subTotal)}</h4>
+                                    <h4>Tax (6%): {this.handleCurrencyDisplay(this.state.calculatedTax)}</h4>
+                                    <h3>Grand Total: {this.handleCurrencyDisplay(this.state.grandTotal)}</h3>
                                     <Button variant="contained" className="purchaseButton" onClick={this.handlePurchaseClick} className="purchaseButton">
                                         Purchase
                                     </Button>

@@ -18,19 +18,7 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }));
-
-
 class Products extends Component {
-
     constructor(props){
         super(props);
 
